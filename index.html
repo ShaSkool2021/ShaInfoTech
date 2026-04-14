@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sha InfoTech | IT Training & Placement Center</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark:  #0d2b6e;
+      --blue:       #1a4fba;
+      --blue-mid:   #2563eb;
+      --blue-light: #3b82f6;
+      --blue-pale:  #eff6ff;
+      --accent:     #f59e0b;
+      --white:      #ffffff;
+      --text:       #1e293b;
+      --muted:      #64748b;
+      --border:     #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%;
+      height: 68px;
+      background: var(--blue-dark);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--white); letter-spacing: -0.3px;
+      text-decoration: none;
+    }
+    .logo span { color: #60a5fa; }
+
+    .nav-links {
+      list-style: none;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #60a5fa; }
+
+    .nav-btn {
+      background: var(--accent) !important;
+      color: var(--blue-dark) !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    /* ── HERO ── */
+    #home {
+      padding-top: 68px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 55%, #1e40af 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 3rem;
+      padding-left: 6%; padding-right: 6%;
+      padding-bottom: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(59,130,246,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-text { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #bfdbfe;
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.4rem 1rem; border-radius: 30px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: 2.8rem; font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.3px;
+    }
+    .hero-text h1 .yellow { color: var(--accent); }
+
+    .hero-text p {
+      font-size: 1rem; font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      max-width: 460px;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--blue-dark);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: var(--white);
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: #60a5fa; color: #bfdbfe; transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-num {
+      font-size: 1.9rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: rgba(255,255,255,0.55);
+      margin-top: 0.25rem; font-weight: 500;
+    }
+
+    .hero-img-wrap {
+      position: relative; z-index: 1;
+      display: flex; justify-content: center;
+    }
+    .hero-img-wrap img {
+      width: 100%; max-width: 520px;
+      border-radius: 20px; object-fit: cover; height: 420px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      border: 3px solid rgba(255,255,255,0.1);
+      display: block;
+    }
+
+    .hero-float-card {
+      position: absolute; bottom: -16px; left: 10px;
+      background: var(--white); border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .float-icon { font-size: 1.6rem; }
+    .float-title { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+    .float-val { font-size: 1rem; font-weight: 800; color: var(--blue-mid); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 6%; }
+
+    .tag {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    h2 {
+      font-size: 2rem; font-weight: 800;
+      color: var(--blue-dark);
+      line-height: 1.25; letter-spacing: -0.3px;
+      margin-bottom: 1rem;
+    }
+
+    .intro {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--blue-pale); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img {
+      width: 100%; border-radius: 16px;
+      object-fit: cover; height: 420px;
+      box-shadow: 0 20px 60px rgba(26,79,186,0.15);
+      display: block;
+    }
+
+    .about-badge {
+      position: absolute; top: -16px; right: -16px;
+      background: var(--blue-mid); color: var(--white);
+      border-radius: 12px; padding: 1rem 1.2rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+    }
+    .badge-num { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+    .badge-txt { font-size: 0.72rem; font-weight: 600; opacity: 0.85; margin-top: 2px; }
+
+    .about-text p { color: var(--muted); line-height: 1.75; margin-bottom: 1.2rem; }
+
+    .features {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.7rem; margin-top: 1rem;
+    }
+    .feature-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.88rem; font-weight: 500; color: var(--text);
+    }
+    .fcheck {
+      width: 20px; height: 20px; flex-shrink: 0;
+      background: var(--blue-mid); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.65rem; font-weight: 700;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+
+    .services-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .scard {
+      border-radius: 14px; overflow: hidden;
+      border: 1.5px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+    .scard:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(26,79,186,0.12);
+      border-color: var(--blue-light);
+    }
+    .scard-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+    .scard-body { padding: 1.4rem; }
+    .scard-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .scard h3 { font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+    .scard p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── COURSES ── */
+    #courses {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      text-align: center;
+    }
+    #courses .tag { color: #93c5fd; }
+    #courses h2 { color: var(--white); }
+    #courses .intro { color: rgba(255,255,255,0.6); margin: 0 auto 2.5rem; max-width: 500px; }
+
+    .courses-grid {
+      display: flex; flex-wrap: wrap;
+      gap: 0.75rem; justify-content: center;
+      margin-top: 2.5rem;
+    }
+    .ctag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #bfdbfe; padding: 0.5rem 1.2rem;
+      border-radius: 30px; font-size: 0.88rem; font-weight: 500;
+      cursor: default; transition: background 0.2s, color 0.2s;
+    }
+    .ctag:hover { background: var(--blue-light); color: white; }
+
+    /* ── WHY US ── */
+    #why {
+      background: var(--blue-pale);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+
+    #why img {
+      width: 100%; border-radius: 16px;
+      object-fit: cover; height: 440px;
+      box-shadow: 0 20px 60px rgba(26,79,186,0.15);
+      display: block;
+    }
+
+    .why-content p { color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+
+    .why-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .why-card {
+      background: var(--white); border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      box-shadow: 0 2px 12px rgba(26,79,186,0.06);
+      border-left: 3px solid var(--blue-mid);
+    }
+    .why-card-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .why-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.2rem; }
+    .why-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin: 0; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1.3fr;
+      gap: 5rem; align-items: start;
+    }
+
+    .contact-left p { color: var(--muted); line-height: 1.75; margin-bottom: 2rem; }
+
+    .cinfo-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .cinfo { display: flex; gap: 1rem; align-items: flex-start; }
+    .cinfo-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: var(--blue-pale); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .cinfo-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .cinfo-val { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-top: 1px; }
+
+    .cform {
+      background: var(--blue-dark); border-radius: 20px; padding: 2.5rem;
+    }
+    .cform h3 { font-size: 1.3rem; font-weight: 800; color: var(--white); margin-bottom: 1.5rem; }
+
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fgroup { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+    .fgroup label { font-size: 0.78rem; font-weight: 600; color: rgba(255,255,255,0.6); }
+    .fgroup input,
+    .fgroup select,
+    .fgroup textarea {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 8px; padding: 0.7rem 1rem;
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s; width: 100%;
+    }
+    .fgroup input::placeholder,
+    .fgroup textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .fgroup input:focus,
+    .fgroup select:focus,
+    .fgroup textarea:focus { border-color: var(--blue-light); }
+    .fgroup select option { background: var(--blue-dark); color: var(--white); }
+    .fgroup textarea { resize: vertical; min-height: 90px; }
+
+    .fsub {
+      width: 100%; margin-top: 0.5rem;
+      background: var(--accent); color: var(--blue-dark);
+      border: none; cursor: pointer; padding: 0.85rem;
+      border-radius: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .fsub:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue-dark); padding: 2rem 6%;
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-logo { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .footer-logo span { color: #60a5fa; }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #home { grid-template-columns: 1fr; padding-top: 88px; }
+      .hero-img-wrap { display: none; }
+      .about-grid, .contact-wrap, #why { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      h2 { font-size: 1.7rem; }
+    }
+    @media (max-width: 600px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .frow { grid-template-columns: 1fr; }
+      .features { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-text h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="logo">Sha <span>Info</span>Tech</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#contact" class="nav-btn">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-text">
+    <div class="hero-badge">🎓 IT Training & Placement Center — Chennai</div>
+    <h1>Build Your IT Career with <span class="yellow">Real Skills</span></h1>
+    <p>Sha InfoTech offers hands-on technology training and end-to-end placement support — from your first class to your first IT job.</p>
+    <div class="hero-btns">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="#contact" class="btn-ghost">Contact Us</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Students Trained</div>
+      </div>
+      <div>
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Tech Courses</div>
+      </div>
+      <div>
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Placement Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-img-wrap">
+    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80" alt="IT Training classroom"/>
+    <div class="hero-float-card">
+      <div class="float-icon">🚀</div>
+      <div>
+        <div class="float-title">Next Batch Starting</div>
+        <div class="float-val">Enroll Now</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80" alt="Students learning"/>
+      <div class="about-badge">
+        <div class="badge-num">5+</div>
+        <div class="badge-txt">Years Training</div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="tag">About Us</span>
+      <h2>We Train. We Place. We Grow.</h2>
+      <p>Sha InfoTech is a premier IT training institute based in Chennai, dedicated to transforming freshers, students, and working professionals into job-ready IT talent through practical, industry-aligned training.</p>
+      <p>Our experienced trainers and strong placement network make us the trusted choice for aspiring IT professionals across Tamil Nadu.</p>
+      <div class="features">
+        <div class="feature-item"><div class="fcheck">✓</div> Industry trainers</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Project-based learning</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Small batch sizes</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Placement until hired</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Weekend batches</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Affordable fees</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Resume & interview prep</div>
+        <div class="feature-item"><div class="fcheck">✓</div> Internship tie-ups</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-top">
+    <div>
+      <span class="tag">What We Offer</span>
+      <h2>Our Services</h2>
+    </div>
+    <p class="intro" style="max-width:340px;">Everything you need to go from learning to earning — all under one roof.</p>
+  </div>
+  <div class="services-grid">
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80" alt="Technical Training"/>
+      <div class="scard-body">
+        <div class="scard-icon">📚</div>
+        <h3>Technical Training</h3>
+        <p>Hands-on courses in the most in-demand technologies, taught by professionals with real-world project experience.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Placement Assistance"/>
+      <div class="scard-body">
+        <div class="scard-icon">💼</div>
+        <h3>Placement Assistance</h3>
+        <p>Our dedicated placement cell connects trained students with top IT companies. Resume building and mock interviews included.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&q=80" alt="Corporate Training"/>
+      <div class="scard-body">
+        <div class="scard-icon">🏢</div>
+        <h3>Corporate Training</h3>
+        <p>Customized training programs for companies looking to upskill their teams with flexible schedules and tailored content.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80" alt="Internship Programs"/>
+      <div class="scard-body">
+        <div class="scard-icon">🏛️</div>
+        <h3>Internship Programs</h3>
+        <p>Gain real-world experience through our company tie-ups. Perfect for freshers and final-year students building their portfolio.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Certification Prep"/>
+      <div class="scard-body">
+        <div class="scard-icon">🏆</div>
+        <h3>Certification Prep</h3>
+        <p>Get trained for globally recognized certifications in AWS, Azure, Google Cloud, Python, and more to boost your resume.</p>
+      </div>
+    </div>
+    <div class="scard">
+      <img class="scard-img" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Interview Prep"/>
+      <div class="scard-body">
+        <div class="scard-icon">🎤</div>
+        <h3>Interview Preparation</h3>
+        <p>Communication skills, problem-solving techniques, and HR interview preparation to make you stand out from the crowd.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <span class="tag">Technologies We Teach</span>
+  <h2>Our Course Offerings</h2>
+  <p class="intro">Explore our wide range of technology courses — from beginner to advanced level</p>
+  <div class="courses-grid">
+    <span class="ctag">Python</span>
+    <span class="ctag">Java</span>
+    <span class="ctag">Web Development</span>
+    <span class="ctag">React JS</span>
+    <span class="ctag">Node JS</span>
+    <span class="ctag">Data Science</span>
+    <span class="ctag">Machine Learning</span>
+    <span class="ctag">SQL & MySQL</span>
+    <span class="ctag">Cloud Computing (AWS)</span>
+    <span class="ctag">Microsoft Azure</span>
+    <span class="ctag">DevOps</span>
+    <span class="ctag">Cybersecurity</span>
+    <span class="ctag">UI/UX Design</span>
+    <span class="ctag">Artificial Intelligence</span>
+    <span class="ctag">Android Development</span>
+    <span class="ctag">Selenium Testing</span>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=800&q=80" alt="Students collaborating"/>
+  <div class="why-content">
+    <span class="tag">Why Choose Us</span>
+    <h2>The Sha InfoTech Difference</h2>
+    <p>We don't just teach — we make sure you get hired. Our end-to-end approach sets us apart from other training institutes in Chennai.</p>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="why-card-icon">👨‍💻</div>
+        <div>
+          <h4>Industry Expert Trainers</h4>
+          <p>Learn from professionals with 10+ years of real IT industry experience.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🎯</div>
+        <div>
+          <h4>100% Job-Focused Curriculum</h4>
+          <p>Every course is designed around what companies actually look for in candidates.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🤝</div>
+        <div>
+          <h4>Placement Until You Are Hired</h4>
+          <p>We don't stop supporting you until you land your dream IT job.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">💰</div>
+        <div>
+          <h4>Affordable and Flexible</h4>
+          <p>Competitive course fees with weekday and weekend batch options available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="contact-left">
+      <span class="tag">Get In Touch</span>
+      <h2>Start Your IT Journey Today</h2>
+      <p>Have questions about a course or placement? Fill in the form and our team will get back to you within 24 hours.</p>
+      <div class="cinfo-list">
+        <div class="cinfo">
+          <div class="cinfo-icon">📍</div>
+          <div>
+            <div class="cinfo-label">Location</div>
+            <div class="cinfo-val">Chennai, Tamil Nadu, India</div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">📧</div>
+          <div>
+            <div class="cinfo-label">Email</div>
+            <div class="cinfo-val">info@shainfotech.com</div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">📞</div>
+          <div>
+            <div class="cinfo-label">Phone</div>
+            <div class="cinfo-val">+91 XXXXXXXXXX</div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">🕒</div>
+          <div>
+            <div class="cinfo-label">Working Hours</div>
+            <div class="cinfo-val">Mon – Sat: 9:00 AM – 7:00 PM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cform">
+      <h3>Send Us a Message</h3>
+      <div class="frow">
+        <div class="fgroup">
+          <label>First Name</label>
+          <input type="text" placeholder="Your first name"/>
+        </div>
+        <div class="fgroup">
+          <label>Last Name</label>
+          <input type="text" placeholder="Your last name"/>
+        </div>
+      </div>
+      <div class="fgroup">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@email.com"/>
+      </div>
+      <div class="fgroup">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 XXXXXXXXXX"/>
+      </div>
+      <div class="fgroup">
+        <label>Course Interested In</label>
+        <select>
+          <option value="">Select a course...</option>
+          <option>Python</option>
+          <option>Java</option>
+          <option>Web Development</option>
+          <option>Data Science</option>
+          <option>Cloud Computing (AWS)</option>
+          <option>DevOps</option>
+          <option>Cybersecurity</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label>Message (Optional)</label>
+        <textarea placeholder="Tell us about your background or any questions..."></textarea>
+      </div>
+      <button class="fsub">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sha <span>Info</span>Tech</div>
+  <p>© 2025 Sha InfoTech. All rights reserved. | Chennai, India</p>
+  <p>Real Skills. Real Jobs.</p>
+</footer>
+
+</body>
+</html>
